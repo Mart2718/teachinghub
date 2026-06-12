@@ -50,7 +50,6 @@ const HUBS = [
     courseLabel: "Algebra, Trig & Calculus Prep",
     color: "#065f46",
     icon: "∫",
-    comingSoon: true,
     sites: [
       {
         label: "CalcBridge Math Apps",
