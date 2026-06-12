@@ -54,9 +54,9 @@ const HUBS = [
     sites: [
       {
         label: "CalcBridge Math Apps",
-        url: "#",
-        description: "Coming soon — a hub of apps and resources for students preparing for Calculus 1. Add your URL when ready.",
-        tags: ["placeholder", "calculus", "bridge"]
+        url: "https://saccalcbridgehub.netlify.app/",
+        description: "Interactive apps and resources for students preparing for Calculus 1 — algebra, trig, and bridge concepts.",
+        tags: ["algebra", "calculus", "bridge", "trig", "precalc"]
       }
     ]
   }
