@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Romero | Teaching Hub</title>
+  <script src="links.js"></script>
+  <style>
+    /* ─── Tokens ──────────────────────────────────────────── */
+    :root {
+      --sac-teal:    #0e6b72;
+      --sac-orange:  #d4621a;
+      --bg:          #f8f7f4;
+      --surface:     #ffffff;
+      --border:      #e2ddd8;
+      --text:        #1c1917;
+      --muted:       #78716c;
+      --radius:      12px;
+      --shadow:      0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    /* ─── Reset & Base ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── Skip Link ───────────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--sac-teal);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 var(--radius) var(--radius);
+      font-weight: 600;
+      z-index: 999;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ─── Header ──────────────────────────────────────────── */
+    header {
+      background: var(--sac-teal);
+      color: white;
+      padding: 2.5rem 2rem 2rem;
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0.4rem;
+    }
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    header h1 span {
+      color: #fbbf24;
+    }
+    .header-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* ─── Filter Bar ──────────────────────────────────────── */
+    .filter-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .filter-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-right: 0.25rem;
+    }
+    .filter-btn {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover {
+      border-color: var(--sac-teal);
+      color: var(--sac-teal);
+    }
+    .filter-btn.active {
+      background: var(--sac-teal);
+      border-color: var(--sac-teal);
+      color: white;
+    }
+    .filter-btn:focus-visible {
+      outline: 2px solid var(--sac-orange);
+      outline-offset: 2px;
+    }
+
+    /* ─── Main Grid ───────────────────────────────────────── */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+    }
+
+    .course-section {
+      margin-bottom: 2.5rem;
+    }
+    .course-section[hidden] { display: none; }
+
+    .course-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .course-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .course-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .course-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .course-badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      color: white;
+    }
+
+    /* ─── Site Cards ──────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .site-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .site-card:not(.coming-soon):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .site-card:focus-visible {
+      outline: 2px solid var(--sac-orange);
+      outline-offset: 2px;
+    }
+    .site-card.coming-soon {
+      opacity: 0.65;
+      cursor: default;
+      background: var(--bg);
+      border-style: dashed;
+    }
+
+    .card-color-bar {
+      width: 4px;
+      min-height: 50px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      align-self: stretch;
+    }
+
+    .card-body { flex: 1; }
+    .card-label {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+    .site-card:not(.coming-soon) .card-label {
+      color: var(--sac-teal);
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.65rem;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .card-arrow {
+      font-size: 1.1rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      align-self: center;
+      transition: transform 0.15s;
+    }
+    .site-card:not(.coming-soon):hover .card-arrow {
+      transform: translateX(3px);
+      color: var(--sac-teal);
+    }
+
+    /* ─── Coming Soon Badge ───────────────────────────────── */
+    .soon-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer strong { color: var(--sac-teal); }
+
+    /* ─── Responsive ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      header, .filter-bar, main { padding-left: 1rem; padding-right: 1rem; }
+      .site-card { flex-wrap: wrap; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header role="banner">
+    <div class="header-inner">
+      <p class="eyebrow">Santa Ana College · Mathematics &amp; Statistics</p>
+      <h1>Dr. Romero's <span>Teaching Hub</span></h1>
+      <p class="header-sub">A curated dashboard of web apps and tools for each course — one place, always up to date.</p>
+    </div>
+  </header>
+
+  <nav class="filter-bar" aria-label="Filter by course">
+    <div class="filter-inner" id="filter-bar">
+      <span class="filter-label" id="filter-desc">Show:</span>
+      <!-- Buttons injected by JS -->
+    </div>
+  </nav>
+
+  <main id="main-content" role="main">
+    <div id="hub-grid" aria-live="polite" aria-atomic="false">
+      <!-- Sections injected by JS -->
+    </div>
+  </main>
+
+  <footer>
+    To add or update links, edit <strong>links.js</strong> — no HTML changes needed.
+  </footer>
+
+  <script>
+    // ─── Render ───────────────────────────────────────────────────────────────
+    const grid = document.getElementById('hub-grid');
+    const filterBar = document.getElementById('filter-bar');
+    let activeFilter = 'all';
+
+    function renderAll() {
+      grid.innerHTML = '';
+
+      HUBS.forEach(hub => {
+        const section = document.createElement('section');
+        section.className = 'course-section';
+        section.dataset.id = hub.id;
+        section.setAttribute('aria-labelledby', `heading-${hub.id}`);
+
+        const badgeStyle = `background:${hub.color}`;
+
+        section.innerHTML = `
+          <div class="course-header">
+            <span class="course-icon" aria-hidden="true">${hub.icon}</span>
+            <div>
+              <span class="course-title" id="heading-${hub.id}">${hub.course}</span>
+              <span class="course-subtitle"> — ${hub.courseLabel}</span>
+            </div>
+            <span class="course-badge" style="${badgeStyle}">${hub.course}</span>
+          </div>
+          <div class="cards-grid">
+            ${hub.sites.map(site => renderCard(site, hub)).join('')}
+          </div>
+        `;
+
+        grid.appendChild(section);
+      });
+    }
+
+    function renderCard(site, hub) {
+      const isComingSoon = hub.comingSoon || site.url === '#';
+      const cardClass = isComingSoon ? 'site-card coming-soon' : 'site-card';
+      const tag = isComingSoon ? 'div' : 'a';
+      const href = isComingSoon ? '' : `href="${site.url}" target="_blank" rel="noopener noreferrer"`;
+      const ariaLabel = isComingSoon
+        ? `${site.label} — coming soon`
+        : `Open ${site.label} in a new tab`;
+
+      return `
+        <${tag} class="${cardClass}" ${href} aria-label="${ariaLabel}">
+          <div class="card-color-bar" style="background:${hub.color}" aria-hidden="true"></div>
+          <div class="card-body">
+            ${isComingSoon ? '<span class="soon-pill">Coming Soon</span>' : ''}
+            <div class="card-label">${site.label}</div>
+            <p class="card-desc">${site.description}</p>
+            <div class="card-tags" aria-label="Tags">
+              ${site.tags.filter(t => t !== 'placeholder').map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+          </div>
+          ${!isComingSoon ? '<span class="card-arrow" aria-hidden="true">→</span>' : ''}
+        </${tag}>
+      `;
+    }
+
+    function renderFilters() {
+      const allBtn = makeFilterBtn('all', 'All Courses');
+      filterBar.appendChild(allBtn);
+
+      HUBS.forEach(hub => {
+        const btn = makeFilterBtn(hub.id, hub.course);
+        filterBar.appendChild(btn);
+      });
+    }
+
+    function makeFilterBtn(id, label) {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn' + (id === 'all' ? ' active' : '');
+      btn.textContent = label;
+      btn.dataset.filter = id;
+      btn.setAttribute('aria-pressed', id === 'all' ? 'true' : 'false');
+      btn.addEventListener('click', () => applyFilter(id));
+      return btn;
+    }
+
+    function applyFilter(id) {
+      activeFilter = id;
+
+      // Update buttons
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const isActive = btn.dataset.filter === id;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      // Show/hide sections
+      document.querySelectorAll('.course-section').forEach(section => {
+        const show = id === 'all' || section.dataset.id === id;
+        section.hidden = !show;
+      });
+    }
+
+    // ─── Boot ─────────────────────────────────────────────────────────────────
+    renderFilters();
+    renderAll();
+  </script>
+
+</body>
+</html>
