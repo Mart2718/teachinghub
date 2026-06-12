@@ -22,7 +22,7 @@ const HUBS = [
     icon: "✏️",
     sites: [
       {
-        label: "Tiny Teacher Apps",
+        label: "Inteactive Apps for Learning",
         url: "https://mfetwebapps.netlify.app/",
         description: "Interactive web apps designed for Math 204 — number sense, base systems, geometry, and elementary math concepts.",
         tags: ["apps", "elementary", "number sense"]
