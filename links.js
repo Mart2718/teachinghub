@@ -23,37 +23,37 @@ const HUBS = [
     sites: [
       {
         label: "Tiny Teacher Apps",
-        url: "https://tinyteacherapps.netlify.app/",
+        url: "https://mfetwebapps.netlify.app/",
         description: "Interactive web apps designed for Math 204 — number sense, base systems, geometry, and elementary math concepts.",
         tags: ["apps", "elementary", "number sense"]
       }
     ]
   },
   {
-    id: "math-172",
-    course: "Math 172",
-    courseLabel: "Precalculus & Trigonometry",
+    id: "teaching",
+    course: "Teaching and Learning",
+    courseLabel: "Apps for Teaching",
     color: "#b45309",
     icon: "📐",
     sites: [
       {
-        label: "Online Retrieval & Problem Solving Portal",
-        url: "https://mfetwebapps.netlify.app/",
-        description: "Retrieval practice and problem-solving web apps for precalculus — graphing, functions, trig, and algebra skills.",
-        tags: ["apps", "retrieval", "graphing", "trig"]
+        label: "Intructional Material",
+        url: "https://tinyteacherapps.netlify.app/ ",
+        description: "Interactive web apps designed for classroom use.",
+        tags: ["apps", "teaching", "learning", "instruction"]
       }
     ]
   },
   {
     id: "calc-bridge",
-    course: "CalcBridge",
+    course: "CalcBridge Apps",
     courseLabel: "Algebra, Trig & Calculus Prep",
     color: "#065f46",
     icon: "∫",
     comingSoon: true,
     sites: [
       {
-        label: "CalcBridge Math Academy",
+        label: "CalcBridge Math Apps",
         url: "#",
         description: "Coming soon — a hub of apps and resources for students preparing for Calculus 1. Add your URL when ready.",
         tags: ["placeholder", "calculus", "bridge"]
